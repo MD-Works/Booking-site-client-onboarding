@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Onboarding Form</title>
+    <style>
+        :root {
+            --bg-color: #fbf9f6;
+            --card-bg: #ffffff;
+            --text-main: #2d2722;
+            --text-muted: #6e655f;
+            --accent: #8c7662;
+            --border: #e6dfd9;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        header {
+            margin-bottom: 32px;
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+        p.subtitle {
+            color: var(--text-muted);
+            margin: 0;
+        }
+        section {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        h2 {
+            font-size: 18px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+            color: var(--accent);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .hint {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            display: block;
+        }
+        .hint a {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+            background-color: #faf9f8;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+            background-color: #fff;
+        }
+        textarea {
+            resize: vertical;
+            height: 80px;
+        }
+        .radio-group {
+            margin-top: 8px;
+        }
+        .radio-option {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        .radio-option input {
+            margin-top: 4px;
+            margin-right: 10px;
+        }
+        .radio-option label {
+            font-weight: normal;
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+        button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Gather Business Details</h1>
+        <p class="subtitle">Please fill in the details below to complete your booking system setup.</p>
+    </header>
+
+    <!-- Form action can be connected to Formspree, Web3Forms, or a Cloudflare Worker -->
+    <form action="#" method="POST" enctype="multipart/form-data">
+        
+        <!-- SECTION 1 -->
+        <section>
+            <h2>Step 1 — General Business Details</h2>
+            
+            <div class="form-group">
+                <label for="business_name">Business Name</label>
+                <span class="hint">Include your short version (e.g. "Glow Studio") and full legal name if applicable.</span>
+                <input type="text" id="business_name" name="business_name" required placeholder="e.g. Glow Beauty Studio">
+            </div>
+
+            <div class="form-group">
+                <label for="tagline">Tagline & Description</label>
+                <span class="hint">What the business does in one sentence — used for the website's hero banner section.</span>
+                <textarea id="tagline" name="tagline" required placeholder="e.g. Premium skincare and aesthetics in Johannesburg."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="maps_link">Google Maps Link</label>
+                <span class="hint">The share URL from Google Maps for your business — used to extract location coordinates.</span>
+                <input type="text" id="maps_link" name="maps_link" required placeholder="https://maps.app.goo.gl/...">
+            </div>
+        </section>
+
+        <!-- SECTION 2 -->
+        <section>
+            <h2>Step 2 — Contact & Operations</h2>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <span class="hint">International format — e.g. 27821234567 (no + or spaces).</span>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{9,15}" required placeholder="27821234567">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <span class="hint">The core business contact email — also used for your administrative application invite.</span>
+                <input type="email" id="email" name="email" required placeholder="hello@glowstudio.co.za">
+            </div>
+
+            <div class="form-group">
+                <label for="address">Physical Address</label>
+                <span class="hint">Full address including suburb, city, and postal code.</span>
+                <textarea id="address" name="address" required placeholder="123 Main Road, Bryanston, Johannesburg, 2191"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="hours">Opening Hours</label>
+                <span class="hint">Specify days open, standard operational times, and any standard lunch breaks.</span>
+                <textarea id="hours" name="hours" required placeholder="Mon-Fri: 09:00 - 17:00&#10;Sat: 09:00 - 13:00&#10;Sun: Closed"></textarea>
+            </div>
+        </section>
+
+        <!-- SECTION 3 -->
+        <section>
+            <h2>Step 3 — Style & Technical Preferences</h2>
+            
+            <div class="form-group">
+                <label for="colors">Brand Colours</label>
+                <span class="hint">Hex codes — primary (dark/deep) and accent (highlight). If you do not have hex codes, please upload your logo file below instead.</span>
+                <input type="text" id="colors" name="colors" placeholder="e.g. Primary: #1a1a1a, Accent: #d4af37">
+            </div>
+
+            <div class="form-group">
+                <label for="logo">Logo File</label>
+                <input type="file" id="logo" name="logo" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <label>Online Payments</label>
+                <span class="hint">Would you like to accept online deposits/payments via PayFast?</span>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="payfast_yes" name="payments" value="PayFast">
+                        <label for="payfast_yes">Yes, enable PayFast integration (Requires a PayFast merchant account)</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="payfast_no" name="payments" value="In-Store" checked>
+                        <label for="payfast_no">No, in-store payment only</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Custom Domain</label>
+                <span class="hint">Do you have a dedicated website address ready?</span>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="domain_yes" name="domain_status" value="Owned">
+                        <label for="domain_yes">Yes, I already own a domain (e.g. mybusiness.co.za)</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="domain_buy" name="domain_status" value="Needs Purchase">
+                        <label for="domain_buy">No, but I would like to buy one</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="domain_free" name="domain_status" value="Free URL" checked>
+                        <label for="domain_free">No, happy with the free setup URL (e.g. business.pages.dev)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="google_account">Client Gmail / Google Account</label>
+                <span class="hint">Required to link and sync your booking schedule with Google Calendar. You can make a free account at gmail.com if needed.</span>
+                <input type="email" id="google_account" name="google_account" required placeholder="example@gmail.com">
+            </div>
+
+            <div class="form-group">
+                <label for="imgbb_key">imgbb API Key (Optional)</label>
+                <span class="hint">
+                    Needed to handle custom treatment and brochure photo uploads. 
+                    First <a href="https://imgbb.com/signup" target="_blank">create a free account here</a>, 
+                    then go to the <a href="https://api.imgbb.com/" target="_blank">imgbb API settings page</a> to copy your key.
+                </span>
+                <input type="text" id="imgbb_key" name="imgbb_key" placeholder="e.g. 7a6b5c4d3e2f1a...">
+            </div>
+        </section>
+
+        <!-- SECTION 4 -->
+        <section>
+            <h2>Step 4 — Catalog & Menu</h2>
+            
+            <div class="form-group">
+                <label for="menu_file">Upload Service / Treatment Menu</label>
+                <span class="hint">Upload a PDF, Word document, or image showing names, durations (mins), prices, and short descriptions.</span>
+                <input type="file" id="menu_file" name="menu_file" accept=".pdf,.doc,.docx,image/*">
+            </div>
+
+            <div class="form-group">
+                <label for="menu_text">Or list them here manually</label>
+                <textarea id="menu_text" name="menu_text" placeholder="Service Name - Duration - Price - Description&#10;e.g. Deep Tissue Massage - 60 mins - R600 - Full body relief..."></textarea>
+            </div>
+        </section>
+
+        <button type="submit">Submit Onboarding Details</button>
+    </form>
+</div>
+
+</body>
+</html>
